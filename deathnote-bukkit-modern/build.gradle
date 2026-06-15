@@ -1,0 +1,39 @@
+/*
+ * deathnote-bukkit-modern
+ *
+ * Final plugin artifact for Minecraft 1.13 - latest.
+ * Uses PersistentDataContainer, CustomModelData and NamespacedKey recipes.
+ *
+ * The shadow plugin bundles deathnote-core, deathnote-platform-api and
+ * deathnote-bukkit-common into a single loadable plugin jar.
+ */
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation project(':deathnote-bukkit-common')
+    compileOnly "io.papermc.paper:paper-api:${modernSpigotApiVersion}"
+}
+
+shadowJar {
+    archiveBaseName = 'DeathNote-Bukkit-Modern'
+    archiveClassifier = ''
+    archiveVersion = project.version
+}
+
+// Make the default build produce the shaded plugin jar.
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('jar') {
+    archiveClassifier = 'thin'
+}

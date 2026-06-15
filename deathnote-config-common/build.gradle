@@ -1,0 +1,16 @@
+/*
+ * deathnote-config-common
+ *
+ * Pure-Java YAML config/messages loading shared by Bukkit and Forge lines.
+ * No Bukkit, Forge, or Minecraft dependencies.
+ */
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    api project(':deathnote-core')
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+}

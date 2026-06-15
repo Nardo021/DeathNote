@@ -1,0 +1,21 @@
+/*
+ * deathnote-core
+ *
+ * Pure-Java, platform-agnostic game logic. This module MUST NOT import
+ * Bukkit, Spigot, Paper, Forge, Fabric, NeoForge, Minecraft or NMS classes.
+ * Its only compile dependency is the equally clean platform-api module.
+ *
+ * Kept Java 8 compatible so it can be reused by every adapter, including the
+ * MC 1.7.10 line.
+ */
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    api project(':deathnote-platform-api')
+
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+}

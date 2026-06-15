@@ -1,0 +1,40 @@
+# =====================================================================
+# DeathNote recipe configuration
+# =====================================================================
+recipe:
+  # Register the crafting recipe at all.
+  enabled: true
+
+  # Difficulty preset: hard | extreme | disabled
+  #
+  #   hard:            extreme:
+  #     W N W            W N W
+  #     E B E            G B G
+  #     I T I            D T D
+  #
+  #   W = Wither Skeleton Skull   N = Nether Star    E = Eye of Ender
+  #   B = Writable Book (base)    I = Ink Sac        T = Name Tag
+  #   G = Ghast Tear              D = Diamond Block
+  #
+  # Dragon Egg is intentionally NOT used by default.
+  difficultyPreset: hard
+
+  # ---------------------------------------------------------------
+  # Manual override (advanced). When override.enabled is true, the
+  # modern recipe registration can be extended to read this shape.
+  # The v1 implementation ships the presets above; this block is the
+  # documented extension point for custom shapes.
+  # ---------------------------------------------------------------
+  override:
+    enabled: false
+    shape:
+      - "WNW"
+      - "EBE"
+      - "ITI"
+    ingredients:
+      W: WITHER_SKELETON_SKULL
+      N: NETHER_STAR
+      E: ENDER_EYE
+      B: WRITABLE_BOOK
+      I: INK_SAC
+      T: NAME_TAG

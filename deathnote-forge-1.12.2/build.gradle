@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'forge'
+            url = 'https://maven.minecraftforge.net'
+        }
+        maven {
+            name = 'forge-legacy'
+            url = 'https://files.minecraftforge.net/maven'
+        }
+    }
+    dependencies {
+        classpath('com.anatawa12.forge:ForgeGradle:2.3-1.0.+') {
+            changing = true
+        }
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+repositories {
+    maven {
+        name = 'forge'
+        url = 'https://files.minecraftforge.net/maven'
+    }
+    maven {
+        name = 'forge-maven'
+        url = 'https://maven.minecraftforge.net'
+    }
+    mavenCentral()
+}
+
+version = project.version
+group = project.group
+archivesBaseName = 'deathnote-forge-1.12.2'
+
+sourceCompatibility = targetCompatibility = '1.8'
+
+minecraft {
+    version = '1.12.2-14.23.5.2847'
+    runDir = 'run'
+    mappings = 'snapshot_20171003'
+}
+
+dependencies {
+    compile project(':deathnote-core')
+    compile project(':deathnote-config-common')
+}
+
+def embedProjects = [':deathnote-core', ':deathnote-platform-api', ':deathnote-config-common']
+
+jar {
+    embedProjects.each { path ->
+        dependsOn "${path}:jar"
+        from {
+            zipTree(project(path).tasks.getByName('jar').archivePath)
+        }
+    }
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+    manifest {
+        attributes([
+                'Specification-Title'  : 'deathnote',
+                'Specification-Vendor' : 'yaazyy',
+                'Specification-Version': '1',
+                'Implementation-Title' : project.name,
+                'Implementation-Version': version
+        ])
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', '1.12.2'
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': '1.12.2'
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

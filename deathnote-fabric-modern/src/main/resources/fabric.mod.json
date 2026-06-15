@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "deathnote",
+  "version": "1.0.0",
+  "name": "Death Note",
+  "description": "A craftable Death Note item. Write a player's name, click Done, fate is sealed.",
+  "authors": ["yaazyy"],
+  "license": "All Rights Reserved",
+  "icon": "assets/deathnote/textures/item/death_note.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.yaazyy.deathnote.fabric.DeathNoteFabricMod"],
+    "client": ["com.yaazyy.deathnote.fabric.DeathNoteFabricClientMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric-api": "*",
+    "minecraft": ">=1.20"
+  }
+}

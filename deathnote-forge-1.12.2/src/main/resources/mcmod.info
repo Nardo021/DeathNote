@@ -1,0 +1,15 @@
+[
+  {
+    "modid": "deathnote",
+    "name": "Death Note",
+    "description": "A craftable Death Note item. Write a player's name, click Done, fate is sealed.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "authorList": ["yaazyy"],
+    "credits": "Shared logic from deathnote-core.",
+    "logoFile": "assets/deathnote/textures/items/death_note.png",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

@@ -1,0 +1,27 @@
+# NeoForge mod metadata (TEMPLATE - enable once the module is implemented)
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "deathnote"
+version = "1.0.0"
+displayName = "Death Note"
+description = '''
+A craftable Death Note item. Write a player's name, click Done, fate is sealed.
+'''
+authors = "yaazyy"
+
+[[dependencies.deathnote]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[20.4,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.deathnote]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[1.20.4,)"
+    ordering = "NONE"
+    side = "BOTH"

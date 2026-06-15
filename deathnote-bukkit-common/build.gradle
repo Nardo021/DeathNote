@@ -1,0 +1,26 @@
+/*
+ * deathnote-bukkit-common
+ *
+ * Shared Bukkit/Spigot/Paper logic used by BOTH the legacy and modern final
+ * artifacts. It compiles against an OLD, widely available Spigot API so the
+ * shared bytecode only ever touches methods that exist on every supported
+ * server (MC 1.7.10 - latest).
+ *
+ * Version-specific features (PersistentDataContainer, CustomModelData,
+ * NamespacedKey recipes, modern materials) live in the legacy/modern modules,
+ * accessed through small abstract hooks in this module.
+ */
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    api project(':deathnote-core')
+    api project(':deathnote-platform-api')
+    api project(':deathnote-config-common')
+
+    // compileOnly: the server provides Bukkit at runtime.
+    compileOnly "org.spigotmc:spigot-api:${legacySpigotApiVersion}"
+}

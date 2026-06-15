@@ -1,0 +1,20 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "WNW",
+    "EBE",
+    "ITI"
+  ],
+  "key": {
+    "W": { "item": "minecraft:skull", "data": 1 },
+    "N": { "item": "minecraft:nether_star" },
+    "E": { "item": "minecraft:ender_eye" },
+    "B": { "item": "minecraft:writable_book" },
+    "I": { "item": "minecraft:dye", "data": 0 },
+    "T": { "item": "minecraft:name_tag" }
+  },
+  "result": {
+    "item": "deathnote:death_note",
+    "count": 1
+  }
+}

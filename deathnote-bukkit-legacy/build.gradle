@@ -1,0 +1,39 @@
+/*
+ * deathnote-bukkit-legacy
+ *
+ * Final plugin artifact for the legacy material era. Compiled against the
+ * Spigot 1.8.8 API and Java 8. Avoids PersistentDataContainer, CustomModelData,
+ * NamespacedKey recipes and other post-1.13 APIs.
+ *
+ * Runtime target: MC 1.8.x - 1.12.2. See README.md for the 1.7.10 caveat
+ * (primitive int<->double signature changes for damage()/setHealth()).
+ */
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation project(':deathnote-bukkit-common')
+    compileOnly "org.spigotmc:spigot-api:${legacySpigotApiVersion}"
+}
+
+shadowJar {
+    archiveBaseName = 'DeathNote-Bukkit-Legacy'
+    archiveClassifier = ''
+    archiveVersion = project.version
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('jar') {
+    archiveClassifier = 'thin'
+}

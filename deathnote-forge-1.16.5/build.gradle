@@ -1,0 +1,80 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+version = project.version
+group = project.group
+
+base {
+    archivesName = 'deathnote-forge-1.16.5'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+minecraft {
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            mods {
+                deathnote {
+                    source sourceSets.main
+                }
+            }
+        }
+        client { }
+        server {
+            args '--nogui'
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${forgeVersion1165}"
+    implementation project(':deathnote-core')
+    implementation project(':deathnote-config-common')
+}
+
+def embedProjects = [':deathnote-core', ':deathnote-platform-api', ':deathnote-config-common']
+
+tasks.named('jar', Jar).configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    embedProjects.each { path ->
+        dependsOn path + ':jar'
+        from(zipTree(project(path).tasks.jar.archiveFile)) {
+            exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+        }
+    }
+    manifest {
+        attributes([
+                'Specification-Title'  : 'deathnote',
+                'Specification-Vendor' : 'yaazyy',
+                'Specification-Version': '1',
+                'Implementation-Title'   : project.name,
+                'Implementation-Version': archiveVersion.get()
+        ])
+    }
+    finalizedBy 'reobfJar'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    def props = [
+            'minecraft_version'      : '1.16.5',
+            'minecraft_version_range': '[1.16.5,1.17)',
+            'forge_version'          : '36.2.39',
+            'forge_version_range'    : '[36,)'
+    ]
+    inputs.properties props
+    filesMatching('META-INF/mods.toml') {
+        expand props
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

@@ -1,0 +1,18 @@
+/*
+ * deathnote-platform-api
+ *
+ * Pure-Java abstraction layer. This module defines the contract between the
+ * platform-agnostic core and the concrete platform adapters (Bukkit, Forge,
+ * Fabric, NeoForge). It MUST NOT depend on any platform/game library.
+ *
+ * Kept Java 8 compatible so legacy adapters (MC 1.7.10) can consume it.
+ */
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    // No runtime dependencies on purpose. This is a clean abstraction layer.
+}

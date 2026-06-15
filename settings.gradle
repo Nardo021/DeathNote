@@ -1,0 +1,48 @@
+/*
+ * DeathNote monorepo settings.
+ *
+ * IMPORTANT ARCHITECTURE NOTE
+ * ---------------------------
+ * This repository is intentionally NOT a "one jar supports everything" build.
+ * It produces multiple final artifacts from shared logic:
+ *
+ *   deathnote-platform-api  - pure Java abstraction layer (no platform deps)
+ *   deathnote-core          - pure Java game-agnostic logic (no platform deps)
+ *   deathnote-bukkit-common - shared Bukkit/Spigot/Paper code
+ *   deathnote-bukkit-legacy - final artifact for MC 1.7.10 - 1.12.2
+ *   deathnote-bukkit-modern - final artifact for MC 1.13 - latest
+ *
+ * Forge 1.16.5 and 1.20.1 are wired into this root build (ForgeGradle 6).
+ * Older Forge modules (1.7.10 / 1.8.9 / 1.12.2) use independent gradlew
+ * wrappers — see scripts/build-all-forge.sh.
+ * Fabric / NeoForge remain scaffolds (not wired here yet).
+ */
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'deathnote'
+
+include 'deathnote-platform-api'
+include 'deathnote-core'
+include 'deathnote-config-common'
+include 'deathnote-bukkit-common'
+include 'deathnote-bukkit-legacy'
+include 'deathnote-bukkit-modern'
+include 'deathnote-forge-1.20.1'
+include 'deathnote-forge-1.16.5'
+
+// --- Older Forge modules (independent gradlew per module README) ---
+// include 'deathnote-forge-1.7.10'
+// include 'deathnote-forge-1.8.9'
+// include 'deathnote-forge-1.12.2'
+// include 'deathnote-fabric-modern'
+// include 'deathnote-neoforge-modern'

@@ -1,0 +1,44 @@
+# =====================================================================
+# DeathNote - Legacy (MC 1.8.x - 1.12.2) configuration
+# =====================================================================
+# NOTE: CustomModelData and PersistentDataContainer do NOT exist on legacy.
+# The item is a BOOK_AND_QUILL with a display name + hidden lore HMAC marker.
+
+input:
+  firstPageOnly: true
+  firstLineOnly: true
+  clearBookAfterUse: true
+  consumeOnUse: false
+
+kill:
+  delayTicks: 1
+  # On 1.8 - 1.12 the "minecraft:kill" / "kill <player>" commands may not exist
+  # or may not accept a player argument; the native fallbacks below do the work.
+  preferMinecraftNamespaceCommand: false
+  allowFallbackNativeKill: true
+  allowFallbackSetHealth: true
+
+permissions:
+  use: deathnote.use
+  give: deathnote.give
+  admin: deathnote.admin
+  bypass: deathnote.bypass
+
+cooldown:
+  enabled: true
+  seconds: 60
+
+item:
+  displayName: "&cDeath Note"
+  lore:
+    - "&8A notebook that decides fate."
+    - "&7Write a name. Click Done."
+  # Ignored on legacy (kept for config parity).
+  customModelData: -1
+
+# A verified HMAC signature is ALWAYS required (renamed/copied books never work).
+security:
+  hmacSecret: ""
+  blockSelfTarget: true
+  blockOpTarget: true
+  debugChatInput: false

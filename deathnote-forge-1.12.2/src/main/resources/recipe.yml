@@ -1,0 +1,7 @@
+# Recipe difficulty presets for DeathNote Forge 1.12.2
+# hard   - W N W / E B E / I T I
+# extreme - W N W / G B G / D T D
+# disabled - no crafting recipe
+
+difficultyPreset: hard
+enabled: true

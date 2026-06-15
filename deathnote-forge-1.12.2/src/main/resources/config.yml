@@ -1,0 +1,35 @@
+# DeathNote Forge 1.12.2 configuration (same schema as Bukkit modern)
+input:
+  firstPageOnly: true
+  firstLineOnly: true
+  clearBookAfterUse: true
+  consumeOnUse: false
+
+kill:
+  delayTicks: 1
+  preferMinecraftNamespaceCommand: true
+  allowFallbackNativeKill: true
+  allowFallbackSetHealth: true
+
+permissions:
+  use: deathnote.use
+  give: deathnote.give
+  admin: deathnote.admin
+  bypass: deathnote.bypass
+
+cooldown:
+  enabled: true
+  seconds: 60
+
+item:
+  displayName: "&cDeath Note"
+
+security:
+  hmacSecret: ""
+  blockSelfTarget: true
+  blockOpTarget: true
+  debugChatInput: false
+
+recipe:
+  enabled: true
+  difficultyPreset: hard

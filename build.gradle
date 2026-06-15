@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = rootProject.findProperty('group') ?: 'com.yaazyy.deathnote'
+    version = rootProject.findProperty('version') ?: '1.0.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'spigotmc-repo'
+            url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+        maven {
+            name = 'papermc-repo'
+            url = 'https://repo.papermc.io/repository/maven-public/'
+        }
+        maven {
+            name = 'sonatype'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+    }
+}
+
+subprojects { sub ->
+    if (sub.name.startsWith('deathnote-forge-')) {
+        return
+    }
+    apply plugin: 'java-library'
+
+    java {
+        withSourcesJar()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-Xlint:-options']
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+        }
+    }
+}

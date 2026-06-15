@@ -1,0 +1,28 @@
+apply plugin: 'java-library'
+
+group = rootProject.group
+version = rootProject.version
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':deathnote-core')
+    compile "org.yaml:snakeyaml:${snakeyamlVersion}"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['../../../../deathnote-config-common/src/main/java']
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

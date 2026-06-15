@@ -1,0 +1,9 @@
+rootProject.name = 'deathnote-forge-1.12.2'
+
+include ':deathnote-platform-api'
+include ':deathnote-core'
+include ':deathnote-config-common'
+
+project(':deathnote-platform-api').projectDir = file('gradle/composite/deathnote-platform-api')
+project(':deathnote-core').projectDir = file('gradle/composite/deathnote-core')
+project(':deathnote-config-common').projectDir = file('gradle/composite/deathnote-config-common')

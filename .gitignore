@@ -1,0 +1,33 @@
+# Build output
+build/
+out/
+bin/
+*.class
+
+# Gradle
+.gradle/
+.gradle-home/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / runtime
+*.log
+run/
+logs/
+deathnote-audit.log
+
+# Local secrets (HMAC secret is generated into config.yml at runtime; never commit a live server config)
+**/server/plugins/DeathNote/config.yml

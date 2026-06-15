@@ -1,0 +1,24 @@
+name: DeathNote
+main: com.yaazyy.deathnote.bukkit.modern.ModernDeathNotePlugin
+version: 1.0.0
+author: yaazyy
+description: A craftable Death Note. Write a player's name in the book, click Done, and fate is sealed.
+api-version: "1.13"
+commands:
+  deathnote:
+    description: Death Note command (use, give, reload, info, debug, recipe).
+    usage: /dn help
+    aliases: [dn]
+permissions:
+  deathnote.use:
+    description: Allows using a Death Note and viewing info/recipe.
+    default: true
+  deathnote.give:
+    description: Allows giving Death Notes to players via /dn give.
+    default: op
+  deathnote.admin:
+    description: Allows admin actions (reload, debug).
+    default: op
+  deathnote.bypass:
+    description: Makes the holder immune to Death Notes.
+    default: false

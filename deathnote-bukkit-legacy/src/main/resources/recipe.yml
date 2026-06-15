@@ -1,0 +1,20 @@
+# =====================================================================
+# DeathNote recipe configuration (legacy)
+# =====================================================================
+recipe:
+  enabled: true
+
+  # Difficulty preset: hard | extreme | disabled
+  #
+  #   hard:            extreme:
+  #     W N W            W N W
+  #     E B E            G B G
+  #     I T I            D T D
+  #
+  #   W = Wither Skeleton Skull (SKULL_ITEM:1)   N = Nether Star
+  #   E = Eye of Ender (EYE_OF_ENDER)            B = Book and Quill (BOOK_AND_QUILL)
+  #   I = Ink Sac (INK_SACK)                     T = Name Tag
+  #   G = Ghast Tear                             D = Diamond Block
+  #
+  # Dragon Egg is intentionally NOT used by default.
+  difficultyPreset: hard

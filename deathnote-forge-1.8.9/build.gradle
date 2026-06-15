@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.minecraftforge.net' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+group = 'com.yaazyy.deathnote'
+version = '1.0.0-SNAPSHOT'
+archivesBaseName = 'deathnote-forge-1.8.9'
+
+sourceCompatibility = targetCompatibility = '1.8'
+
+def monorepoRoot = file("${rootDir}/..")
+
+minecraft {
+    version = '1.8.9-11.15.1.2318-1.8.9'
+    runDir = 'run'
+    mappings = 'stable_22'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir "${monorepoRoot}/deathnote-platform-api/src/main/java"
+            srcDir "${monorepoRoot}/deathnote-core/src/main/java"
+            srcDir "${monorepoRoot}/deathnote-config-common/src/main/java"
+        }
+    }
+}
+
+dependencies {
+    compile 'org.yaml:snakeyaml:1.33'
+}
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Specification-Title': 'deathnote',
+                'Specification-Vendor': 'yaazyy',
+                'Specification-Version': '1',
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version
+        )
+    }
+}

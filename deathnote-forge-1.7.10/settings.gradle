@@ -1,0 +1,13 @@
+/*
+ * Independent Forge 1.7.10 build — includes shared pure-Java modules from the monorepo.
+ */
+rootProject.name = 'deathnote-forge-1.7.10'
+
+include 'deathnote-platform-api'
+project(':deathnote-platform-api').projectDir = file('../deathnote-platform-api')
+
+include 'deathnote-core'
+project(':deathnote-core').projectDir = file('../deathnote-core')
+
+include 'deathnote-config-common'
+project(':deathnote-config-common').projectDir = file('../deathnote-config-common')

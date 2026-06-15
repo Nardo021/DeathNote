@@ -1,0 +1,64 @@
+# =====================================================================
+# DeathNote - Modern (MC 1.13+) configuration
+# =====================================================================
+
+# How the written book input is interpreted.
+input:
+  # Only the first page is ever read.
+  firstPageOnly: true
+  # Only the first line of that page is used as the target name.
+  firstLineOnly: true
+  # Wipe the book's pages after a use so the typed name does not persist.
+  clearBookAfterUse: true
+  # Remove one Death Note from the player after a successful kill.
+  consumeOnUse: false
+
+# Kill execution. Strategies are always tried in this priority order:
+#   1) minecraft:kill <name>   (highest authority command)
+#   2) kill <name>
+#   3) native platform damage
+#   4) setHealth(0)
+kill:
+  # Delay (in server ticks) before the kill runs. Runs on the main thread.
+  delayTicks: 1
+  # Try the namespaced "minecraft:kill" before the bare "kill".
+  preferMinecraftNamespaceCommand: true
+  # Allow falling back to a native damage call.
+  allowFallbackNativeKill: true
+  # Allow falling back to setting health to zero.
+  allowFallbackSetHealth: true
+
+# Permission node names.
+permissions:
+  use: deathnote.use
+  give: deathnote.give
+  admin: deathnote.admin
+  bypass: deathnote.bypass
+
+# Per-player cooldown between uses.
+cooldown:
+  enabled: true
+  seconds: 60
+
+# Item appearance. The item is internally a WRITABLE_BOOK.
+item:
+  displayName: "&cDeath Note"
+  lore:
+    - "&8A notebook that decides fate."
+    - "&7Write a name. Click Done."
+  # Set to a positive integer to enable a resource-pack custom texture.
+  # -1 disables CustomModelData (the item looks like a normal writable book).
+  customModelData: -1
+
+# Security / anti-abuse.
+# A verified HMAC signature is ALWAYS required - a renamed/copied book can
+# never act as a Death Note. (There is no toggle to disable this on purpose.)
+security:
+  # HMAC secret. Leave blank to auto-generate on first startup.
+  hmacSecret: ""
+  # Block targeting yourself.
+  blockSelfTarget: true
+  # Treat server operators as immune.
+  blockOpTarget: true
+  # Debug-only chat input fallback. Disabled by default. Not the main flow.
+  debugChatInput: false
